@@ -1,0 +1,13 @@
+Hola estás en insertar
+<div ng-show="ingresando">
+nombre:
+<input ng-model="datos.nombre">
+apellido
+<input ng-model="datos.apellido">
+numero
+<input type="number" ng-model="datos.numero">
+<button ng-click="send(datos)">Enviar</button>
+</div>
+<div ng-hide="ingresando">
+{{mesagge}}
+</div>
