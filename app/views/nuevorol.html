@@ -1,0 +1,41 @@
+
+<h2 class="text-center">Nuevo Rol</h2>
+
+<br>
+
+<h4 class="text-center .form-control"> Nombre del rol <input type="text" ng-model="nombrerol"> </h4>
+
+<div ng-repeat="c in colecciones">
+
+<table class="table marginleft">
+
+<h3> Permisos {{c.collection}} </h3>
+
+
+<tr>
+<td>Find</td> <td> <input type="checkbox" ng-model="c.find" name=""> </td>
+</tr>
+<tr>
+<td>List</td> <td> <input type="checkbox" ng-model="c.list" name=""> </td>
+</tr>
+<tr>
+<td>Write</td> <td> <input type="checkbox" ng-model="c.insert" name=""></td>
+</tr>
+
+<tr>
+<td>Update</td> <td> <input type="checkbox" ng-model="c.update" name=""></td>
+</tr>
+
+<tr>
+<td>Delete</td> <td> <input type="checkbox" ng-model="c.delete" name=""></td>
+</tr>
+
+
+</table>
+
+
+</div>
+
+<h3 class="text-center"><button class="btn-success" ng-click="confirmar()">Crear Rol</button></h3>
+
+

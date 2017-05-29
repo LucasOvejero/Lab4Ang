@@ -41,6 +41,11 @@ app.constant('ApiEntryPoint',{url: 'http://localhost:4444'});
         controller: 'InsertCtrl',
         controllerAs: 'insert'
       })
+      .when('/nuevorol',{
+        templateUrl: 'views/nuevorol.html',
+        controller: 'rolCtrl',
+        controllerAs: 'rol'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -91,7 +96,7 @@ app.factory('AuthSrv', function($rootScope, $q, $window, $http, $localStorage, A
         .then(function(res){
           $rootScope.isAuthenticated = true;
           var usuario=res.data.data;
-          console.log(usuario.id);
+          console.log(res);
           $window.sessionStorage["authtoken"] = usuario.token;
           $window.sessionStorage["id"] = usuario.id;
           $localStorage.user= usuario;

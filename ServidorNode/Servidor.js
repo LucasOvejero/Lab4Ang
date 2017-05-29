@@ -87,11 +87,24 @@ app.post('/login',(req,res)=>{
 });
 //Listar
 app.get('/api/:collection/list',(req,res)=>{
+
+		if(req.params.collection === "*"){
+			 database.listCollections({})
+			    .toArray(function(err, items) {
+						if(err) return res.json({error:true,message:err.message});
+						res.json(items);
+			})
+		}
+		else{
 		let collection=database.collection(req.params.collection);
+
+
 		collection.find({}).toArray((err,data)=>{
+					console.log(data);
 			if(err) return res.json({error:true,message:err.message});
 			res.json(data);
 		});
+	}
 });
 //find
 app.get('/api/:collection/find',(req,res)=>{
