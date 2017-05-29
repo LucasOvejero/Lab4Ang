@@ -22,13 +22,16 @@ MongoDb.connect(url,(err,db)=>{
  	if(err)
 		return console.log(err);
 	database= db;
-	database.collection("permisos").find().toArray((error,data)=>{
-		if(error){return console.log(error)}
-		permis=data;
-		console.log(permis);
-	});
+	actualizarPermisos();
 });
 
+
+let actualizarPermisos= ()=>{
+database.collection('rol').find().toArray((error,data)=>{
+	if(error){return console.log(error)}
+	permis=data;
+});
+};
 //Middleware
 app.use('/api/:collection/:action',(req,res,next)=>{
 	let token =req.header('Authorization').split(' ');
@@ -90,6 +93,7 @@ app.get('/api/:collection/list',(req,res)=>{
 			res.json(data);
 		});
 });
+//find
 app.get('/api/:collection/find',(req,res)=>{
 		let collection=database.collection(req.params.collection);
 		collection.find(req.body).toArray((err,data)=>{
@@ -99,13 +103,18 @@ app.get('/api/:collection/find',(req,res)=>{
 });
 //Insertar
 app.post('/api/:collection/insert',(req,res)=>{
-	console.log(req.body);
 	let collection=database.collection(req.params.collection);
 	collection.insert(req.body,(err,resp)=>{
 		if(err)
 			res.json({error:true , message:err.message});
 		else
-			res.json({error:false , message:'el id insertado es:' +resp.insertedIds});
+			{
+				res.json({error:false , message:'el id insertado es:' +resp.insertedIds});
+				if(req.params.collection === 'rol')//Si se inserta un nuevo rol
+				{
+					actualizarPermisos();//se actualiza el arreglo de permisos en memoria
+				}
+			}
 	});
 });
 //Borrar
@@ -140,7 +149,12 @@ app.post('/api/:collection/update',(req,res)=>{
 			if(error)
 			 res.json({error:true , message:error });
 			else
-				res.json({error:false ,message: 'se ha actualizado correctamente'});//retornar success true o error 
+				{
+					res.json({error:false ,message: 'se ha actualizado correctamente'});
+					if(req.params.collection==='rol')//es decir que se actualiza un rol
+						actualizarPermisos();//se actualiza el arreglo de permisos en memoria
+				}
+				//retornar success true o error 
 			//res.send('Estamos en update y se actualizo el registro con id:'+ idAct);
 		});
 	}
