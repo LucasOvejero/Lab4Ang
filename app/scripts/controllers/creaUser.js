@@ -26,7 +26,7 @@ app.controller('UserCtrl', function ($scope,$http,$rootScope) {
 
   	$scope.confirmar = function () {
   		var myObj = {};
-  		myObj.usuario = $scope.nombreUsuario;
+			myObj.usuario = $scope.nombreUsuario;
   		myObj.password = $scope.passwordUsuario;
   		myObj.rol = $scope.rolSelect;
       myObj.estado = true;
@@ -35,14 +35,7 @@ app.controller('UserCtrl', function ($scope,$http,$rootScope) {
         console.log(success.data);
 				$scope.nombreUsuario="";
 				$scope.passwordUsuario="";
-				
-  			/*if(respond.data.error){
-          console.log("ERRORAZO" + respond.data.message);
-        }
-  			else {
-          console.log("insertadisimo " + respond.message);
-        }*/
-  		});
+				});
   	}
 
   });
