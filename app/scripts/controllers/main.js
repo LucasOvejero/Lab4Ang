@@ -64,7 +64,9 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $location, AuthSrv) {
 
 app.controller('ListCtrl',function($scope,$http,$rootScope,$location){
 
+
 	$http.get('http://localhost:4444/api/user/list')
+
   	.then(
   	function(ret){
       console.log(ret.data);
@@ -75,18 +77,10 @@ app.controller('ListCtrl',function($scope,$http,$rootScope,$location){
 });
 
 
-app.controller('InsertCtrl',function($scope,$http,$rootScope){
-	$scope.datos={nombre:"",apellido:"",numero:0};
-	$scope.ingresando=true;
-	$scope.send=function(data){
-		$http.post('http://localhost:4444/api/personas/insert',data).then
-		(function(success){
-				console.log(success.data);
-				$scope.mesagge=success.data.message
-				$scope.ingresando=false;
-			});
-	}
-});
+
+
+
+
  /*
 angular.module('anlApp')
   .controller('MainCtrl', function () {
