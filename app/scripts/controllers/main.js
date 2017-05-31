@@ -18,9 +18,9 @@ app.controller('MainCtrl', function ($scope,$http){
  	$scope.agregar= function(pet){
  		$scope.pets.push(pet);
  	}
- 
+
  	$scope.borrar=function(pet){
- 		
+
  	}
   });
 app.controller('LoginCtrl', function ($scope, $rootScope, $location, AuthSrv) {
@@ -52,7 +52,7 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $location, AuthSrv) {
 	$scope.credentials={usuario:"",password:""};
 	$scope.tok={mensaje:"nada"};
 	$scope.doLogin= function(cred){
-		
+
 		$http.post('http://localhost:4444/login',{credentials:cred}).then(function(respon){
 			$rootScope.token=respon.data.data.token;
 			console.log(respon.data.data.token);
@@ -63,11 +63,12 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $location, AuthSrv) {
 });*/
 
 app.controller('ListCtrl',function($scope,$http,$rootScope,$location){
-	
-	$http.get('http://localhost:4444/api/personas/find')
+
+	$http.get('http://localhost:4444/api/user/list')
   	.then(
   	function(ret){
-  		$scope.personas=ret.data;
+      console.log(ret.data);
+  		$scope.user=ret.data;
   		$scope.cargando=false;
   	}
   	,function(e){console.log(e);});
