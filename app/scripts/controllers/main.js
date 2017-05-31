@@ -18,9 +18,9 @@ app.controller('MainCtrl', function ($scope,$http){
  	$scope.agregar= function(pet){
  		$scope.pets.push(pet);
  	}
- 
+
  	$scope.borrar=function(pet){
- 		
+
  	}
   });
 app.controller('LoginCtrl', function ($scope, $rootScope, $location, AuthSrv) {
@@ -52,7 +52,7 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $location, AuthSrv) {
 	$scope.credentials={usuario:"",password:""};
 	$scope.tok={mensaje:"nada"};
 	$scope.doLogin= function(cred){
-		
+
 		$http.post('http://localhost:4444/login',{credentials:cred}).then(function(respon){
 			$rootScope.token=respon.data.data.token;
 			console.log(respon.data.data.token);
@@ -63,7 +63,7 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $location, AuthSrv) {
 });*/
 
 app.controller('ListCtrl',function($scope,$http,$rootScope,$location){
-	
+
 	$http.get('http://localhost:4444/api/personas/find')
   	.then(
   	function(ret){
@@ -74,18 +74,10 @@ app.controller('ListCtrl',function($scope,$http,$rootScope,$location){
 });
 
 
-app.controller('InsertCtrl',function($scope,$http,$rootScope){
-	$scope.datos={nombre:"",apellido:"",numero:0};
-	$scope.ingresando=true;
-	$scope.send=function(data){
-		$http.post('http://localhost:4444/api/personas/insert',data).then
-		(function(success){
-				console.log(success.data);
-				$scope.mesagge=success.data.message
-				$scope.ingresando=false;
-			});
-	}
-});
+
+
+
+
  /*
 angular.module('anlApp')
   .controller('MainCtrl', function () {

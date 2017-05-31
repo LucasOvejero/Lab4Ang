@@ -36,10 +36,10 @@ app.constant('ApiEntryPoint',{url: 'http://localhost:4444'});
         controller: 'ListCtrl',
         controllerAs: 'list'
       })
-      .when('/insert',{
-        templateUrl: 'views/insert.html',
-        controller: 'InsertCtrl',
-        controllerAs: 'insert'
+      .when('/nuevousuario', {
+        templateUrl: 'views/nuevousuario.html',
+        controller: 'UserCtrl',
+        controllerAs: 'usuario'
       })
       .when('/nuevorol',{
         templateUrl: 'views/nuevorol.html',
@@ -53,14 +53,14 @@ app.constant('ApiEntryPoint',{url: 'http://localhost:4444'});
 app.factory('authInterceptor',function($q,$rootScope,$window,$location,$localStorage){
   return{
     request: function(conf){
-     
+
       if (/^views/.test(conf.url)) {
         return conf;
       }
 
       conf.headers=conf.headers||{};
       if('user' in $localStorage){
-        
+
         $window.sessionStorage['authtoken']=$localStorage.user.token;
         $rootScope.user=$localStorage.user.data;
         $rootScope.isAuthenticated=true;

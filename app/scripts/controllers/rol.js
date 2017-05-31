@@ -40,5 +40,5 @@ app.controller('rolCtrl', function ($scope,$http) {
   		});
 
   	}
-    
+
   });
