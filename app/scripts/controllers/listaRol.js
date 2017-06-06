@@ -13,7 +13,7 @@ var app=angular.module('anlApp');
 app.controller('ListCtrl',function($scope,$http,$rootScope,$location){
 
 
-	$http.get('http://localhost:4444/api/permisos/list')
+	$http.get('http://localhost:4444/api/rol/list')
 
   	.then(
   	function(ret){

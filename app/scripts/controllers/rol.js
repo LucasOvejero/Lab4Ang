@@ -33,7 +33,7 @@ app.controller('rolCtrl', function ($scope,$http) {
   		myObj.rol = $scope.nombrerol;
   		myObj.activo = true;
   		myObj.collections = $scope.colecciones;
-  		$http.post('http://localhost:4444/api/permisos/insert',myObj).then(function (respond)
+  		$http.post('http://localhost:4444/api/rol/insert',myObj).then(function (respond)
   		{
   			if(respond.data.error){ console.log("ERRORAZO" + respond.data.data.message);}
   			else { console.log("insertadisimo " + respond.message);}
@@ -42,4 +42,3 @@ app.controller('rolCtrl', function ($scope,$http) {
   	}
 
   });
-db.permisos.updateOne({"rol":"superAdmin"},{ $set:{"collections":[{"collection":"permisos","find":true,"list":true,"insert":true,"update":true,"delete":true},{"collection":"user","find":true,"list":true,"insert":true,"update":true,"delete":true},{"collection":"*","list":true}]}})

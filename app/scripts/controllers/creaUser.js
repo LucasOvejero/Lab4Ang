@@ -13,7 +13,7 @@ var app=angular.module('anlApp');
 app.controller('UserCtrl', function ($scope,$http,$rootScope) {
 
 
-	$http.get('http://localhost:4444/api/permisos/list')
+	$http.get('http://localhost:4444/api/rol/list')
   		.then(function(ret){
       var myArray =[];
   		for(var a in ret.data){
