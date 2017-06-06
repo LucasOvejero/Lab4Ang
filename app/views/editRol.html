@@ -1,0 +1,20 @@
+<div>
+    <table class="table table-striped">
+      <tr>
+        <th>Rol</th>
+        <th>Estado</th>
+        <th>Colecciones</th>
+        <th></th>
+      </tr>
+      <tr ng-repeat="r in rol">
+        <td> {{r.rol}} </td> <input type="hidden" ng-model="r.rol" value="{{r._id}}">
+        <td> <input type="checkbox" ng-model="r.activo"  value="{{r.activo}}"></td>
+        <td>
+          <select ng-model="rol.collections">
+            <option ng-repeat="c in r.collections" value="{{c.collection}}">{{c.collection}}</option>
+          </select>
+        </td>
+        <td> <button type="button" class="btn btn-danger" ng-click="editar({rol: r.rol, activo:r.activo, collections: r.collections}, r._id)">Editar</button> </td>
+      </tr>
+    </table>
+  </div>

@@ -46,6 +46,11 @@ app.constant('ApiEntryPoint',{url: 'http://localhost:4444'});
         controller: 'rolCtrl',
         controllerAs: 'rol'
       })
+      .when('/editRol',{
+        templateUrl: 'views/editRol.html',
+        controller: 'EditRolCtrl',
+        controllerAs: 'rol'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -53,14 +58,14 @@ app.constant('ApiEntryPoint',{url: 'http://localhost:4444'});
 app.factory('authInterceptor',function($q,$rootScope,$window,$location,$localStorage){
   return{
     request: function(conf){
-     
+
       if (/^views/.test(conf.url)) {
         return conf;
       }
 
       conf.headers=conf.headers||{};
       if('user' in $localStorage){
-        
+
         $window.sessionStorage['authtoken']=$localStorage.user.token;
         $rootScope.user=$localStorage.user.data;
         $rootScope.isAuthenticated=true;

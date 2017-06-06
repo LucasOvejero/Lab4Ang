@@ -40,5 +40,39 @@ app.controller('rolCtrl', function ($scope,$http) {
   		});
 
   	}
-    
+
   });
+
+	app.controller('EditRolCtrl', function ($scope,$http) {
+
+		$scope.rol = {};
+
+  	$http.get('http://localhost:4444/api/rol/list', {})
+    .then(function(response){
+      $scope.rol = response.data;
+			console.log(response.data);
+    }, function(err){
+      console.log(err);
+    });
+		$scope.myObj = {
+			rol: "",
+			activo: true,
+			collections: []
+		}
+
+		$scope.editar = function(obj, id){
+
+			console.log(obj);
+  		$http.post('http://localhost:4444/api/rol/update?id=' + id , obj)
+			.then(function (respond)
+  		{
+				//scope.rol = respond.data;
+				console.log(respond);
+
+  		}, function(error){
+				console-log(error);
+			}
+		)
+		}
+
+	  });
