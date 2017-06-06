@@ -1,0 +1,16 @@
+<div ng-show="cargando">
+	<div class="spinner">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div>
+</div>
+<div ng-hide="cargando">
+<h3>Lista roles </h3>
+<table class="table">
+	<tr ng-repeat="x in roles">
+		<td>{{x.rol}}</td>
+		<td><input type="radio" ng-model="x.find" name="rol"></td>
+	</tr>
+</table>
+<h3 class="text-center"><button class="btn-success" ng-click="">Modificar roles</button></h3>
+</div>
