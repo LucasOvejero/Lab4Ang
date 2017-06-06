@@ -1,0 +1,28 @@
+<div ng-show="cargando">
+	<div class="spinner">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div>
+</div>
+<div ng-hide="cargando">
+
+<h2 class="text-center">Lista de users</h2>
+
+</div>
+
+<div>
+
+<table class="table marginleft">
+
+<h4> Usuarios </h4>
+<tr ng-repeat="x in user">
+<td>{{x.usuario}}</td>
+<td> <input type="radio" ng-model="x.find" name=""> </td>
+</tr>
+
+</table>
+
+
+</div>
+
+<h3 class="text-center"><button class="btn-success" ng-click="confirmar()">Modificar user</button></h3>

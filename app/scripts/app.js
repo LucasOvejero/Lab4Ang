@@ -32,14 +32,24 @@ app.constant('ApiEntryPoint',{url: 'http://localhost:4444'});
         controllerAs: 'login'
       })
       .when('/list', {
-        templateUrl: 'views/list.html',
+        templateUrl: 'views/listaUser.html',
         controller: 'ListCtrl',
         controllerAs: 'list'
       })
-      .when('/insert',{
-        templateUrl: 'views/insert.html',
-        controller: 'InsertCtrl',
-        controllerAs: 'insert'
+      .when('/listRol', {
+        templateUrl: 'views/listRol.html',
+        controller: 'ListCtrl',
+        controllerAs: 'list'
+      })
+      .when('/nuevousuario', {
+        templateUrl: 'views/nuevousuario.html',
+        controller: 'UserCtrl',
+        controllerAs: 'usuario'
+      })
+      .when('/nuevorol',{
+        templateUrl: 'views/nuevorol.html',
+        controller: 'rolCtrl',
+        controllerAs: 'rol'
       })
       .otherwise({
         redirectTo: '/'
@@ -48,14 +58,14 @@ app.constant('ApiEntryPoint',{url: 'http://localhost:4444'});
 app.factory('authInterceptor',function($q,$rootScope,$window,$location,$localStorage){
   return{
     request: function(conf){
-     
+
       if (/^views/.test(conf.url)) {
         return conf;
       }
 
       conf.headers=conf.headers||{};
       if('user' in $localStorage){
-        
+
         $window.sessionStorage['authtoken']=$localStorage.user.token;
         $rootScope.user=$localStorage.user.data;
         $rootScope.isAuthenticated=true;
@@ -91,7 +101,7 @@ app.factory('AuthSrv', function($rootScope, $q, $window, $http, $localStorage, A
         .then(function(res){
           $rootScope.isAuthenticated = true;
           var usuario=res.data.data;
-          console.log(usuario.id);
+          //console.log(res);
           $window.sessionStorage["authtoken"] = usuario.token;
           $window.sessionStorage["id"] = usuario.id;
           $localStorage.user= usuario;
