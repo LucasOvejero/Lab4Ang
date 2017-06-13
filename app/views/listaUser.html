@@ -17,7 +17,7 @@
 <h4> Usuarios </h4>
 <tr ng-repeat="x in user">
 <td>{{x.usuario}}</td>
-<td> <input type="radio" ng-model="x.find" name=""> </td>
+<td><button class="btn-success"ng-click="confirmaUser(x)">Modificar user</button></td>
 </tr>
 
 </table>
@@ -25,4 +25,35 @@
 
 </div>
 
-<h3 class="text-center"><button class="btn-success" ng-click="confirmar()">Modificar user</button></h3>
+
+<h2>----------------------------------------</h2><br>
+    <table class="table marginleft">
+        <tr>
+            <td style="width:80px"></td> <td></td><td style="width:80px">Nuevos Datos</td>
+        </tr>
+        <tr>
+
+            <td style="width:80px">_ID</td> <td bgcolor="#A9F5D0">{{userselected._id}}</td><td>
+        </tr>
+    <tr>
+
+        <td style="width:80px">Usuario</td> <td bgcolor="#A9F5D0">{{userselected.usuario}}</td><td><input type="text"  ng-model="r.usuario"></td>
+    </tr>
+    <tr>
+    <td>Pasword</td> <td bgcolor="#A9F5D0">{{userselected.password}} </td><td><input type="text" ng-model="r.password"></td>
+    </tr>
+    <tr>
+			<td>Rol</td> <td bgcolor="#A9F5D0"> {{userselected.rol}}</td>
+	    <td><select ng-model="r.rolSelect"><option ng-repeat="x in roles"  value="{{x.rol}} ">{{x.rol | uppercase}}</option></select></td>
+    </tr>
+
+    <tr>
+    <td>Estado</td> <td bgcolor="#A9F5D0">{{userselected.estado}}</td><td>
+    <select ng-model="r.estado"><option>True</option><option>False</option>
+</select></td>
+    <td><button class="btn-success" ng-click="actualizar_user({usuario:r.usuario,password:r.password,rol:r.rolSelect,estado:r.estado},userselected._id)">Update</button></td>
+    </tr>
+
+
+
+    </table>

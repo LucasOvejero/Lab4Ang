@@ -10,7 +10,17 @@
 
 var app=angular.module('anlApp');
 
-app.controller('ListCtrl',function($scope,$http,$rootScope,$location){
+app.controller('ListUserCtrl',function($scope,$http,$rootScope,$location){
+
+	$http.get('http://localhost:4444/api/rol/list')
+
+  	.then(
+  	function(ret){
+      console.log(ret.data);
+  		$scope.roles=ret.data;
+  		$scope.cargando=false;
+  	}
+  	,function(e){console.log(e);});
 
 
 	$http.get('http://localhost:4444/api/user/list')
@@ -22,4 +32,27 @@ app.controller('ListCtrl',function($scope,$http,$rootScope,$location){
   		$scope.cargando=false;
   	}
   	,function(e){console.log(e);});
+
+		$scope.confirmaUser = function(ret) {
+			console.log(ret);
+			$scope.userselected=ret;
+
+
+
+		}
+
+		$scope.actualizar_user = function(obj, id){
+
+			console.log(obj);	console.log(id);
+  		$http.post('http://localhost:4444/api/user/update?id=' + id , obj)
+			.then(function (respond)
+  		{
+				//scope.rol = respond.data;
+				console.log(respond);
+
+  		}, function(error){
+				console-log(error);
+			}
+		)
+		}
 });
