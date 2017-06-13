@@ -36,15 +36,15 @@
             <a class="navbar-brand" href="#/">anl</a>
           </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+          <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="HeaderCtrl">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/login">Login</a></li>
-              <li><a ng-href="#!/list">Listar</a></li>
-              <li><a ng-href="#!/listRol">Listar roles</a></li>
-              <li><a ng-href="#!/nuevousuario">Nuevo Usuario</a></li>
-              <li><a ng-href="#!/nuevorol">Nuevo Rol</a></li>
-              <li><a ng-href="#!/editRol">Editar Rol</a></li>
+              <li ng-class="{ active: isActive('/login')}"><a href="#/login">Login</a></li>
+              <li ng-class="{ active: isActive('/list')}"><a ng-href="#!/list">Listar</a></li>
+              <li ng-class="{ active: isActive('/listRol')}"><a ng-href="#!/listRol">Listar roles</a></li>
+              <li ng-class="{ active: isActive('/nuevousuario')}"><a ng-href="#!/nuevousuario">Nuevo Usuario</a></li>
+              <li ng-class="{ active: isActive('/nuevorol')}"><a ng-href="#!/nuevorol">Nuevo Rol</a></li>
+              <li ng-class="{ active: isActive('/editRol')}"><a ng-href="#!/editRol">Editar Rol</a></li>
             </ul>
           </div>
         </div>

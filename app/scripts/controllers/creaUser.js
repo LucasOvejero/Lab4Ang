@@ -17,7 +17,7 @@ app.controller('UserCtrl', function ($scope,$http,$rootScope) {
   		.then(function(ret){
       var myArray =[];
   		for(var a in ret.data){
-        console.log(ret.data[a].rol);
+     
   			myArray.push(ret.data[a]);
   		}
       $scope.rolUsuario=myArray;

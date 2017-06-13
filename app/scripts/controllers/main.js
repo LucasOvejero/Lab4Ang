@@ -25,7 +25,8 @@ app.controller('MainCtrl', function ($scope,$http){
   });
 app.controller('LoginCtrl', function ($scope, $rootScope, $location, AuthSrv) {
   $scope.wrong = false;
-  $rootScope.isAuthenticated = false;
+  $rootScope.isAuthenticated = false
+  
   $scope.credentials = {};
   $scope.message = '';
   if ($rootScope.isAuthenticated) {
@@ -38,9 +39,8 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $location, AuthSrv) {
     $rootScope.isLoading = true;
     AuthSrv.login(credentials)
       .then(function(response){
-
-        $rootScope.isLoading = false;
         $rootScope.isAuthenticated = true;
+        $location.path("/list");
       }, function (err) {
         $rootScope.isLoading = false;
         $scope.wrong = true;
@@ -48,6 +48,11 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $location, AuthSrv) {
       });
   };
 });
+app.controller('HeaderCtrl', function ($scope, $location) {
+    $scope.isActive = function (viewLocation) {
+      return viewLocation === $location.path();
+    };
+    });
 /*app.controller('LoginCtrl',function($scope,$http,$rootScope){
 	$scope.credentials={usuario:"",password:""};
 	$scope.tok={mensaje:"nada"};
@@ -69,7 +74,7 @@ app.controller('ListCtrl',function($scope,$http,$rootScope,$location){
 
   	.then(
   	function(ret){
-      console.log(ret.data);
+     
   		$scope.user=ret.data;
   		$scope.cargando=false;
   	}
