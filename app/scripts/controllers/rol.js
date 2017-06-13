@@ -16,7 +16,7 @@ app.controller('rolCtrl', function ($scope,$http) {
 	$http.get('http://localhost:4444/api/*/list')
   		.then(function(ret){
   		//ret debe ser un array , que contenga getCollectionNames();
-  		console.log(ret.data);
+  		
   		var myArray =[];
   		for(var a in ret.data){
   			myArray.push({collection:ret.data[a].name,insert:false,list:false,find:false,update:false,delete:false});
@@ -42,3 +42,37 @@ app.controller('rolCtrl', function ($scope,$http) {
   	}
 
   });
+
+	app.controller('EditRolCtrl', function ($scope,$http) {
+
+		$scope.rol = {};
+
+  	$http.get('http://localhost:4444/api/rol/list', {})
+    .then(function(response){
+      $scope.rol = response.data;
+			
+    }, function(err){
+      console.log(err);
+    });
+		$scope.myObj = {
+			rol: "",
+			activo: true,
+			collections: []
+		}
+
+		$scope.editar = function(obj, id){
+
+		
+  		$http.post('http://localhost:4444/api/rol/update?id=' + id , obj)
+			.then(function (respond)
+  		{
+				//scope.rol = respond.data;
+				console.log(respond);
+
+  		}, function(error){
+				console-log(error);
+			}
+		)
+		}
+
+	  });

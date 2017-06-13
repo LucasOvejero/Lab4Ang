@@ -13,12 +13,12 @@ var app=angular.module('anlApp');
 app.controller('ListCtrl',function($scope,$http,$rootScope,$location){
 
 
-	$http.get('http://localhost:4444/api/user/list')
+	$http.get('http://localhost:4444/api/rol/list')
 
   	.then(
   	function(ret){
-     
-  		$scope.user=ret.data;
+
+  		$scope.roles=ret.data;
   		$scope.cargando=false;
   	}
   	,function(e){console.log(e);});
