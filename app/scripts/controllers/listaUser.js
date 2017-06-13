@@ -27,7 +27,7 @@ app.controller('ListUserCtrl',function($scope,$http,$rootScope,$location){
 
   	.then(
   	function(ret){
-      console.log(ret.data);
+
   		$scope.user=ret.data;
   		$scope.cargando=false;
   	}

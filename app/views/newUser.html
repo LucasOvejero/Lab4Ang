@@ -1,0 +1,16 @@
+<div ng-controller="UserCtrl">
+        <form name="newUser">
+            <br><label for="usuario">Usuario</label>
+            <input type="text" placeholder="Usuario" name="usuario" ng-model="formData.nombreUsuario" required>
+            <span ng-show="!formData.$pristine && formData.usuario.$error.required">Campo requerido.</span>
+
+            <br><label for="password">Password</label>
+            <input type="text" placeholder="Password" name="password" ng-model="formData.passwordUsuario" required>
+            <span ng-show="!formData.$pristine && formData.password.$error.required">Campo requerido.</span>
+
+            <br><label for="rol">Seleccione Rol</label>
+            <select ng-model="formData.rolSelect" name="rol"><option ng-repeat="x in rolUsuario"  value="{{x.rol}} ">{{x.rol | uppercase}}</option></select>
+            <span ng-show="!formData.$pristine && formData.rol.$error.required">Campo requerido.</span>
+          <input type="submit" class="btn btn-success pull-right" ng-click="enviar(formData)" />
+        </form>
+      </div>
