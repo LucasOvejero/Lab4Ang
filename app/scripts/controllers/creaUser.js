@@ -17,7 +17,7 @@ app.controller('UserCtrl', function ($scope,$http,$rootScope) {
   		.then(function(ret){
       var myArray =[];
   		for(var a in ret.data){
-     
+
   			myArray.push(ret.data[a]);
   		}
       $scope.rolUsuario=myArray;
@@ -34,8 +34,8 @@ app.controller('UserCtrl', function ($scope,$http,$rootScope) {
 	 	 $http.post('http://localhost:4444/api/user/insert',myObj).then(function (success)
 	 	 {
 	 		 console.log(success.data);
-	 		 $scope.nombreUsuario="";
-	 		 $scope.passwordUsuario="";
+	 		 formData.nombreUsuario="";
+	 		 formData.passwordUsuario="";
 	 		 });
  };
 
