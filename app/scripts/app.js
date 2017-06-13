@@ -37,7 +37,7 @@ app.constant('ApiEntryPoint',{url: 'http://localhost:4444'});
         controllerAs: 'list'
       })
       .when('/nuevousuario', {
-        templateUrl: 'views/nuevousuario.html',
+        templateUrl: 'views/newUser.html',
         controller: 'UserCtrl',
         controllerAs: 'usuario'
       })

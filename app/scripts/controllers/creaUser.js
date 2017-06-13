@@ -24,18 +24,20 @@ app.controller('UserCtrl', function ($scope,$http,$rootScope) {
 
   	},function(e){console.log(e);});
 
-  	$scope.confirmar = function () {
-  		var myObj = {};
-			myObj.usuario = $scope.nombreUsuario;
-  		myObj.password = $scope.passwordUsuario;
-  		myObj.rol = $scope.rolSelect;
-      myObj.estado = true;
-  		$http.post('http://localhost:4444/api/user/insert',myObj).then(function (success)
-  		{
-        console.log(success.data);
-				$scope.nombreUsuario="";
-				$scope.passwordUsuario="";
-				});
-  	}
+
+		$scope.enviar = function (formData) {
+			var myObj = {};
+	 	 myObj.usuario = formData.nombreUsuario;
+	 	 myObj.password = formData.passwordUsuario;
+	 	 myObj.rol = formData.rolSelect;
+	 	 myObj.estado = true;
+	 	 $http.post('http://localhost:4444/api/user/insert',myObj).then(function (success)
+	 	 {
+	 		 console.log(success.data);
+	 		 $scope.nombreUsuario="";
+	 		 $scope.passwordUsuario="";
+	 		 });
+ };
+
 
   });
